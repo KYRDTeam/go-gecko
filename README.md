@@ -36,7 +36,7 @@ Installation:
 Add the following line to your project `go.mod` file.
 
 ```
-replace github.com/superoo7/go-gecko => github.com/haupc/go-gecko latest
+replace github.com/superoo7/go-gecko => github.com/KYRDTeam/go-gecko latest
 ```
 
 and run 
