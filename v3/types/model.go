@@ -220,6 +220,9 @@ type CoinsMarketItem struct {
 	ATH                                 float64        `json:"ath"`
 	ATHChangePercentage                 float64        `json:"ath_change_percentage"`
 	ATHDate                             string         `json:"ath_date"`
+	ATL                                 float64        `json:"atl"`
+	ATLChangePercentage                 float64        `json:"atl_change_percentage"`
+	ATLDate                             string         `json:"atl_date"`
 	ROI                                 *ROIItem       `json:"roi"`
 	LastUpdated                         string         `json:"last_updated"`
 	SparklineIn7d                       *SparklineItem `json:"sparkline_in_7d"`
