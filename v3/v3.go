@@ -25,13 +25,12 @@ type Client struct {
 
 // NewClient create new client object
 func NewClient(httpClient *http.Client, apiKey string) *Client {
+	return NewClientWithURL(httpClient, "", apiKey)
+}
+
+func NewClientWithURL(httpClient *http.Client, url, apiKey string) *Client {
 	if httpClient == nil {
 		httpClient = http.DefaultClient
-	}
-
-	url := baseURL
-	if apiKey != "" {
-		url = proURL
 	}
 
 	return &Client{httpClient: httpClient, apiKey: apiKey, url: url}
