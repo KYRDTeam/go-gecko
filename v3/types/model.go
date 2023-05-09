@@ -264,3 +264,10 @@ type Global struct {
 	MarketCapPercentage             AllCurrencies `json:"market_cap_percentage"`
 	UpdatedAt                       int64         `json:"updated_at"`
 }
+
+type DetailPlatformsItemStruct struct {
+	Decimal         uint16 `json:"decimal_place"`
+	ContractAddress string `json:"contract_address"`
+}
+
+type DetailPlatformsItem map[string]DetailPlatformsItemStruct

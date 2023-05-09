@@ -21,7 +21,7 @@ type CoinList []CoinsListItem
 // CoinsMarket https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false
 type CoinsMarket []CoinsMarketItem
 
-// CoinsID https://api.coingecko.com/api/v3/coins/bitcoin
+// CoinsID https://api.coingecko.com/api/v3/coins/tether
 type CoinsID struct {
 	coinBaseStruct
 	BlockTimeInMin      int32               `json:"block_time_in_minutes"`
@@ -46,6 +46,8 @@ type CoinsID struct {
 	StatusUpdates       *[]StatusUpdateItem `json:"status_updates"`
 	LastUpdated         string              `json:"last_updated"`
 	Tickers             *[]TickerItem       `json:"tickers"`
+	Platforms           map[string]string   `json:"platforms"`
+	DetailPlatformsItem DetailPlatformsItem `json:"detail_platforms"`
 }
 
 // CoinsIDTickers https://api.coingecko.com/api/v3/coins/steem/tickers?page=1
