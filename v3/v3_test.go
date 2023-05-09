@@ -86,6 +86,20 @@ func TestCoinsList(t *testing.T) {
 	}
 }
 
+func TestCoinsID(t *testing.T) {
+	err := setupGock("json/coins_id.json", "/coins/tether")
+	coins, err := c.CoinsID(context.Background(), "tether", false, false, false, false, false, false)
+	if err != nil {
+		t.FailNow()
+	}
+	if len(coins.Platforms) == 0 {
+		t.FailNow()
+	}
+	if len(coins.DetailPlatformsItem) == 0 {
+		t.FailNow()
+	}
+}
+
 // Util: Setup Gock
 func setupGock(filename string, url string) error {
 	testJSON, err := os.Open(filename)
