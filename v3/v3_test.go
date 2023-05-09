@@ -100,6 +100,17 @@ func TestCoinsID(t *testing.T) {
 	}
 }
 
+func TestAssetPlatform(t *testing.T) {
+	err := setupGock("json/asset_platforms.json", "/asset_platforms")
+	platforms, err := c.AssetPlatforms(context.Background())
+	if err != nil {
+		t.FailNow()
+	}
+	if len(platforms) != 148 {
+		t.FailNow()
+	}
+}
+
 // Util: Setup Gock
 func setupGock(filename string, url string) error {
 	testJSON, err := os.Open(filename)

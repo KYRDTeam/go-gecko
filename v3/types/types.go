@@ -121,3 +121,6 @@ type ExchangeRatesResponse struct {
 type GlobalResponse struct {
 	Data Global `json:"data"`
 }
+
+// AssetPlatformResponse https://api.coingecko.com/api/v3/asset_platforms
+type AssetPlatforms []AssetPlatformItem

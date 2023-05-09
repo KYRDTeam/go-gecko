@@ -368,6 +368,20 @@ func (c *Client) ExchangeRates(ctx context.Context) (*types.ExchangeRatesItem, e
 	return &data.Rates, nil
 }
 
+func (c *Client) AssetPlatforms(ctx context.Context) (types.AssetPlatforms, error) {
+	url := fmt.Sprintf("%s/asset_platforms", c.url)
+	resp, err := c.MakeReq(ctx, url)
+	if err != nil {
+		return nil, err
+	}
+	var data types.AssetPlatforms
+	err = json.Unmarshal(resp, &data)
+	if err != nil {
+		return nil, err
+	}
+	return data, nil
+}
+
 // Global https://api.coingecko.com/api/v3/global
 func (c *Client) Global(ctx context.Context) (*types.Global, error) {
 	url := fmt.Sprintf("%s/global", c.url)

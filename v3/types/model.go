@@ -271,3 +271,10 @@ type DetailPlatformsItemStruct struct {
 }
 
 type DetailPlatformsItem map[string]DetailPlatformsItemStruct
+
+type AssetPlatformItem struct {
+	ID              string `json:"id"`
+	ChainIdentifier int64  `json:"chain_identifier"`
+	Name            string `json:"name"`
+	Shortname       string `json:"shortname"`
+}
