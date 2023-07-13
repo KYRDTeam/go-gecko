@@ -21,7 +21,11 @@ func doReq(req *http.Request) ([]byte, error) {
 		return nil, err
 	}
 	if 200 != resp.StatusCode {
-		return nil, fmt.Errorf("%s", body)
+		if len(body) != 0 {
+			return nil, fmt.Errorf("%s", body)
+		} else {
+			return nil, fmt.Errorf(`{"status": {"error_code": %d}}`, resp.StatusCode)
+		}
 	}
 	return body, nil
 }
