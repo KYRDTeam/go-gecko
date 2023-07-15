@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"strconv"
 	"strings"
 
 	"github.com/superoo7/go-gecko/format"
@@ -101,11 +102,11 @@ func (c *Client) Ping(ctx context.Context) (*types.Ping, error) {
 }
 
 // SimpleSinglePrice /simple/price  Single ID and Currency (ids, vs_currency)
-func (c *Client) SimpleSinglePrice(ctx context.Context, id string, vsCurrency string) (*types.SimpleSinglePrice, error) {
+func (c *Client) SimpleSinglePrice(ctx context.Context, id string, vsCurrency string, include24hrChange bool) (*types.SimpleSinglePrice, error) {
 	idParam := []string{strings.ToLower(id)}
 	vcParam := []string{strings.ToLower(vsCurrency)}
 
-	t, err := c.SimplePrice(ctx, idParam, vcParam)
+	t, err := c.SimplePrice(ctx, idParam, vcParam, include24hrChange)
 	if err != nil {
 		return nil, err
 	}
@@ -118,13 +119,14 @@ func (c *Client) SimpleSinglePrice(ctx context.Context, id string, vsCurrency st
 }
 
 // SimplePrice /simple/price Multiple ID and Currency (ids, vs_currencies)
-func (c *Client) SimplePrice(ctx context.Context, ids []string, vsCurrencies []string) (*map[string]map[string]float32, error) {
+func (c *Client) SimplePrice(ctx context.Context, ids []string, vsCurrencies []string, include24hrChange bool) (*map[string]map[string]float32, error) {
 	params := url.Values{}
 	idsParam := strings.Join(ids[:], ",")
 	vsCurrenciesParam := strings.Join(vsCurrencies[:], ",")
 
 	params.Add("ids", idsParam)
 	params.Add("vs_currencies", vsCurrenciesParam)
+	params.Add("include_24hr_change", strconv.FormatBool(include24hrChange))
 
 	url := fmt.Sprintf("%s/simple/price?%s", c.url, params.Encode())
 	resp, err := c.MakeReq(ctx, url)
