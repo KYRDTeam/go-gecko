@@ -32,7 +32,7 @@ func TestSimpleSinglePrice(t *testing.T) {
 	if err != nil {
 		t.FailNow()
 	}
-	simplePrice, err := c.SimpleSinglePrice(context.Background(), "bitcoin", "usd")
+	simplePrice, err := c.SimpleSinglePrice(context.Background(), "bitcoin", "usd", true, true)
 	if err != nil {
 		t.FailNow()
 	}
@@ -48,7 +48,7 @@ func TestSimplePrice(t *testing.T) {
 	}
 	ids := []string{"bitcoin", "ethereum"}
 	vc := []string{"usd", "myr"}
-	sp, err := c.SimplePrice(context.Background(), ids, vc)
+	sp, err := c.SimplePrice(context.Background(), ids, vc, true, true)
 	if err != nil {
 		t.FailNow()
 	}
