@@ -266,7 +266,7 @@ type Global struct {
 }
 
 type DetailPlatformsItemStruct struct {
-	Decimal         uint16 `json:"decimal_place"`
+	Decimal         int16  `json:"decimal_place"`
 	ContractAddress string `json:"contract_address"`
 }
 
