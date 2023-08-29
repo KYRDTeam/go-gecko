@@ -1,5 +1,7 @@
 package types
 
+import "encoding/json"
+
 // OrderType
 
 // OrderType in CoinGecko
@@ -266,8 +268,24 @@ type Global struct {
 }
 
 type DetailPlatformsItemStruct struct {
-	Decimal         int16  `json:"decimal_place"`
+	Decimal         uint16 `json:"decimal_place"`
 	ContractAddress string `json:"contract_address"`
+}
+
+func (a *DetailPlatformsItemStruct) UnmarshalJSON(b []byte) error {
+	var tmp struct {
+		Decimal         int16  `json:"decimal_place"`
+		ContractAddress string `json:"contract_address"`
+	}
+	if err := json.Unmarshal(b, &tmp); err != nil {
+		return err
+	}
+	if tmp.Decimal < 0 {
+		tmp.Decimal = 0
+	}
+	a.Decimal = uint16(tmp.Decimal)
+	a.ContractAddress = tmp.ContractAddress
+	return nil
 }
 
 type DetailPlatformsItem map[string]DetailPlatformsItemStruct
